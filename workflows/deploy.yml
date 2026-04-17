@@ -15,6 +15,9 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
+    env:
+      PORT: 3000
+      BASE_PATH: /Guli-a3udu-billah-akbida-afaak/
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -22,10 +25,10 @@ jobs:
           node-version: 20
       - run: npm install -g pnpm
       - run: pnpm install
-      - run: pnpm vite build --base=/Guli-a3udu-billah-akbida-afaak/
+      - run: pnpm vite build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: dist/public
       - uses: actions/deploy-pages@v4
         id: deploy
